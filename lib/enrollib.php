@@ -829,7 +829,7 @@ function enrol_get_all_users_courses($userid, $onlyactive = false, $fields = NUL
     if ($onlyactive) {
         $subwhere = "WHERE ue.status = :active AND e.status = :enabled AND ue.timestart < :now1 AND (ue.timeend = 0 OR ue.timeend > :now2)";
 		if (is_siteadmin()) { // Matt edit
-			$subwhere = "WHERE e.status = :enabled AND ue.timestart < :now1 AND (ue.timeend = 0 OR ue.timeend > :now2)"; // Matt edit - removed 'ue.status = :active AND '
+			$subwhere = ""; // Matt edit - admin are looking for any trace of student activity
 		}
         $params['now1']    = round(time(), -2); // improves db caching
         $params['now2']    = $params['now1'];
